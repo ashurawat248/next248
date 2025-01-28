@@ -2,20 +2,196 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
+.border-dashed-blue {
+  border-top: 4px dashed #009cde;
+  border-bottom: 4px dashed #009cde;
+  border-left: 2px solid transparent; /* Optionally set left and right borders to transparent if needed */
+  border-right: 2px solid transparent;
+}
+
+.border-b-dashed-blue { 
+  border-bottom: 4px dashed #009cde; 
+}
+
+
+.custom-border {
+  border-image: linear-gradient(to right,
+      #ffffff 0% 0.5%,
+      #505050 0.5% 3.55357143%,
+      #ffffff 3.55357143% 4.05357143%,
+      #fedb00 4.05357143% 7.10714286%,
+      #ffffff 7.10714286% 7.60714286%,
+      #fedb00 7.60714286% 10.66071429%,
+      #ffffff 10.66071429% 11.16071429%,
+      #fedb00 11.16071429% 14.21428571%,
+      #ffffff 14.21428571% 14.71428571%,
+      #009cde 14.71428571% 17.76785714%,
+      #ffffff 17.76785714% 18.26785714%,
+      #505050 18.26785714% 21.32142857%,
+      #ffffff 21.32142857% 21.82142857%,
+      #009cde 21.82142857% 24.875%,
+      #ffffff 24.875% 25.375%,
+      #505050 25.375% 28.42857143%,
+      #ffffff 28.42857143% 28.92857143%,
+      #505050 28.92857143% 32.0%,
+      #ffffff 32.0% 32.5%,
+      #fedb00 32.5% 35.55357143%,
+      #ffffff 35.55357143% 36.05357143%,
+      #505050 36.05357143% 39.10714286%,
+      #ffffff 39.10714286% 39.60714286%,
+      #505050 39.60714286% 42.66071429%,
+      #ffffff 42.66071429% 43.16071429%,
+      #505050 43.16071429% 46.21428571%,
+      #ffffff 46.21428571% 46.71428571%,
+      #505050 46.71428571% 49.76785714%,
+      #ffffff 49.76785714% 50.26785714%,
+      #505050 50.26785714% 53.32142857%,
+      #ffffff 53.32142857% 53.82142857%,
+      #bdbdbd 53.82142857% 56.875%,
+      #ffffff 56.875% 57.375%,
+      #fedb00 57.375% 60.42857143%,
+      #ffffff 60.42857143% 60.92857143%,
+      #009cde 60.92857143% 64.0%,
+      #ffffff 64.0% 64.5%,
+      #505050 64.5% 67.55357143%,
+      #ffffff 67.55357143% 68.05357143%,
+      #505050 68.05357143% 71.10714286%,
+      #ffffff 71.10714286% 71.60714286%,
+      #505050 71.60714286% 74.66071429%,
+      #ffffff 74.66071429% 75.16071429%,
+      #505050 75.16071429% 78.21428571%,
+      #ffffff 78.21428571% 78.71428571%,
+      #505050 78.71428571% 81.76785714%,
+      #ffffff 81.76785714% 82.26785714%,
+      #505050 82.26785714% 85.32142857%,
+      #ffffff 85.32142857% 85.82142857%,
+      #505050 85.82142857% 88.875%,
+      #ffffff 88.875% 89.375%,
+      #505050 89.375% 92.42857143%,
+      #ffffff 92.42857143% 92.92857143%,
+      #bdbdbd 92.92857143% 96.0%,
+      #ffffff 96.0% 96.5%,
+      #bdbdbd 96.5% 99.55357143%,
+      #ffffff 99.55357143% 100%);
+  border-image-repeat: repeat;
+  border-image-slice: 4;
+}
+
+.box-shape {
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+.second-box-shape {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+.thrd-box-shape {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);;
+}
+
+.rounded-border {
+  --r: 20px; /* the radius */
+  --s: 30px; /* size of inner curve */
+  --x: 20px; /* horizontal offset (no percentange) */
+  --y: 10px; /* vertical offset (no percentange) */
+  
+  width: 250px;
+  aspect-ratio: 1;
+  background: #3FB8AF;
+  border-radius: var(--r);
+  --_m:/calc(2*var(--r)) calc(2*var(--r)) radial-gradient(#000 70%,#0000 72%);
+  --_g:conic-gradient(at var(--r) var(--r),#000 75%,#0000 0);
+  --_d:(var(--s) + var(--r));
+  mask:
+    calc(var(--_d) + var(--x)) 0 var(--_m),
+    0 calc(var(--_d) + var(--y)) var(--_m),
+    radial-gradient(var(--s) at 0 0,#0000 99%,#000 calc(100% + 1px)) 
+     calc(var(--r) + var(--x)) calc(var(--r) + var(--y)),
+    var(--_g) calc(var(--_d) + var(--x)) 0,
+    var(--_g) 0 calc(var(--_d) + var(--y));
+  mask-repeat: no-repeat;
+}
+
+@layer utilities {
+  .gradient {
+    @apply bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-100;
+   
+  }
+  .first-span { 
+    @apply absolute overflow-hidden w-36 h-36 -top-2.5 -right-2.5 flex items-center justify-center; 
+  }
+  .second-span {
+    @apply absolute w-[150%] h-10 bg-gradient-to-r from-[#1E40AF] via-[#557bf7] to-[#1E40AF] 
+    transform rotate-45 -translate-y-5 flex items-center justify-center text-white 
+    font-semibold tracking-widest uppercase shadow-md; 
+  } 
+}
+
+
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

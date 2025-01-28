@@ -1,0 +1,6 @@
+ <svg width="135" height="10" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="3" x2="30" y2="3" stroke="green" />
+        <line x1="35" y1="3" x2="65" y2="3" stroke="red" />
+        <line x1="70" y1="3" x2="100" y2="3" stroke="blue" />
+        <line x1="105" y1="3" x2="135" y2="3" stroke="yellow" />
+    </svg>
